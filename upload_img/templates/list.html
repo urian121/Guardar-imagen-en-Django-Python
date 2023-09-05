@@ -1,0 +1,10 @@
+{% for zapato in zapatos %}
+<div class="col-md-4">
+  {{ zapato.name }}
+  <img
+    style="width: 100%; max-width: 150px"
+    src="{{ zapato.img_zapato.url }}"
+    class="img-responsive"
+    style="width: 100%; float: left; margin-right: 10px" />
+</div>
+{% endfor %}

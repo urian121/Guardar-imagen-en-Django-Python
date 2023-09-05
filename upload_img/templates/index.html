@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>guardar-imagen-en-Django-Python</title>
+  </head>
+  <body>
+    <h2>Guardar imagen en Django Python</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">subir imagen</button>
+    </form>
+
+    <a href="{% url 'lista' %}" target="_blank">Imagenes</a>
+  </body>
+</html>
