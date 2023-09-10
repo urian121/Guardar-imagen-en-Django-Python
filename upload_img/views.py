@@ -8,31 +8,32 @@ from .models import Zapato
 from .forms import ZapatoForm
 
 
-def inicio(request):
-    form = ZapatoForm()
-    return render(request, 'demo.html', {'form': form})
-
-
 # Create your views here.
-def hotel_image_view(request):
+def inicio(request):
     if request.method == 'POST':
         form = ZapatoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, ('Your movie was successfully added!'))
-            return redirect('success')
+            return redirect('inicio')
         else:
             messages.error(request, 'Error saving form')
             return redirect("inicio")
     else:
         form = ZapatoForm()
-    return render(request, 'index.html', {'form': form})
+        data = {
+            'form': form,
+            'zapatos': list_imagenes(request)
+        }
+    return render(request, 'index.html', data)
 
 
 def list_imagenes(request):
+    return Zapato.objects.all()
+
+
+"""
+def list_imagenes(request):
     zapatos = Zapato.objects.all()
     return render(request, 'list.html', {'zapatos': zapatos})
-
-
-def success(request):
-    return HttpResponse('successfully uploaded')
+"""

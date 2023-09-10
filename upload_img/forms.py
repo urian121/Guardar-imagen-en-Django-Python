@@ -9,3 +9,7 @@ class ZapatoForm(forms.ModelForm):
         # fields = '__all__'
         # fields = ('name', 'img_zapato')
         fields = ['name', 'img_zapato']
+        labels = {
+            'name': 'Nombre de la Imagen',
+            'img_zapato': 'Imagen'
+        }
