@@ -14,10 +14,10 @@ def inicio(request):
         form = ZapatoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, ('Your movie was successfully added!'))
+            messages.success(request, ('La imagen fue registrada con exito'))
             return redirect('inicio')
         else:
-            messages.error(request, 'Error saving form')
+            messages.error(request, 'Error, no se pudo registrar la imagen.')
             return redirect("inicio")
     else:
         form = ZapatoForm()
