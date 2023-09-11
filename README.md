@@ -80,7 +80,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
     from django.db import models
 
-    class Documento(models.Model):
+    class Zapato(models.Model):
         name = models.CharField(max_length=50)
         img_zapato = models.ImageField(upload_to='images/', null=True, blank=True)
         created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
@@ -104,6 +104,14 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
             }
 
 #### 5. Define tu views.py
+
+# Importando el modelo
+
+from .models import Zapato
+
+# Importando el formulario desde la instacia de modelo forms
+
+from .forms import ZapatoForm
 
     def inicio(request):
         if request.method == 'POST':
