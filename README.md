@@ -57,9 +57,12 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
 ##### 1. Configurar tu settings.py
 
-    	import os
-    	MEDIA_URL = '/media/'
-    	MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    import os
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    IMPORTANTE: crear una carpeta al mismo nivel del proyecto 'project_core' que se llame 'media' sera alli donde
+    guardaremos las imagenes subidas.
 
 #### 2. Configurar tu archivo urls.py del proyecto
 
