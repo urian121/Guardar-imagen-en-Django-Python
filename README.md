@@ -19,21 +19,16 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
 ###### 3. Instalar Djando desde el manejador de paquete de Python Pip
 
-    python -m pip install Django
     pip install Django
     Nota: para instalar Django en una version especifica
     pip install Django==4.2.4
 
-###### 4. Instalar el paquete (biblioteca) Pillow, este tiene que ver como procesar la subida de imagen en el servidor
+###### 4. Instalar el paquete (biblioteca) Pillow, esto con el fin de poder procesar la subida de imagen en el servidor
 
     Pillow es la librería que nos permitirá usar el campo ImageField para poder guardar imágenes
 
     - https://pypi.org/project/Pillow/
       pip install Pillow
-
-###### 5. Instalar Driver para conectar Gestor de BD MySQL con Django (opcional)
-
-    pip install mysqlclient
 
 ###### 6. Crear el proyecto con Djando
 
@@ -45,19 +40,19 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
 ###### 7. Crear mi primera aplicación en Django
 
-    python manage.py startapp amigos
+    python manage.py startapp upload_img
 
 ###### 8. Crear el archivo requirements.txt para tener todos mis paquetes a la mano
 
     pip freeze > requirements.txt
     Nota: para instalar los paquetes solo basta ejecutar
 
-###### 9. Instalar nuestra aplicación (amigos) ya creada en el proyecto
+###### 9. Instalar nuestra aplicación (upload_img) ya creada en el proyecto
 
     archivo settings.py
     INSTALLED_APPS = [
     ----,
-    'amigos',
+    'upload_img',
     ]
 
 ##### 1. Configurar tu settings.py
@@ -83,41 +78,58 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
     from django.db import models
 
     class Documento(models.Model):
-    	descripcion = models.CharField(max_length=255, blank=True)
-    	documento = models.FileField(upload_to='documentos/')
-    	subido_a = models.DateTimeField(auto_now_add=True)
+        name = models.CharField(max_length=50)
+        img_zapato = models.ImageField(upload_to='images/', null=True, blank=True)
+        created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+        updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
 #### 4. Definiendo tu forms.py
 
     from django import forms
     from .models import *
 
-    class DocumentoForm(forms.ModelForm):
-    	class Meta:
-    		model = Documento
-    		fields = ('descripcion', 'documento', )
+    class ZapatoForm(forms.ModelForm):
+
+        class Meta:
+            model = Zapato
+            # fields = '__all__'
+            # fields = ('name', 'img_zapato')
+            fields = ['name', 'img_zapato']
+            labels = {
+                'name': 'Nombre de la Imagen',
+                'img_zapato': 'Imagen'
+            }
 
 #### 5. Define tu views.py
 
-    def mi_metodo(request):
-    	if request.method == 'POST':
-    		form = DocumentoForm(request.POST, request.FILES)
-    		if form.is_valid():
-    			form.save()
-    			return redirect('index')
-    	else:
-    		form = DocumentoForm()
-    	return render(request, 'mi_template.html', {
-    		'form': form
-    	})
+    def inicio(request):
+        if request.method == 'POST':
+            form = ZapatoForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                messages.success(request, ('La imagen fue registrada con exito'))
+                return redirect('inicio')
+            else:
+                messages.error(request, 'Error, no se pudo registrar la imagen.')
+                return redirect("inicio")
+        else:
+            form = ZapatoForm()
+            data = {
+                'form': form,
+                'zapatos': list_imagenes(request)
+            }
+        return render(request, 'index.html', data)
+
+
+    def list_imagenes(request):
+        return Zapato.objects.all()
 
 #### 6 Pintando el formulario en tu plantilla index.html
 
     <form method="post" enctype="multipart/form-data">
-    	{% csrf_token %}
-    	{{ form.as_p }}
-    	<button type="submit">Subir</button>
-      </form>
+        {% csrf_token %} {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">subir imagen</button>
+    </form>
 
 ##### Resultado final
 
