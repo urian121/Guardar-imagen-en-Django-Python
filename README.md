@@ -2,15 +2,15 @@
 
 ###### 1. Crear un entorno virtual, hay muchas formas
 
-Opción 1: Crear entorno virtual con el paquete virtualenv, puedes instalarlo de forma global en el sistema atraves de https://pypi.org/project/virtualenv/
-`	  
-		  pip install virtualenv
-		  virtualenv --version
-		  virtualenv env
-		 `
+    Opción 1: Crear entorno virtual con el paquete virtualenv,
+    puedes instalarlo de forma global en el sistema atraves de https://pypi.org/project/virtualenv/
 
-Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en las ultimas versiones de Python
-`python -m venv env`
+    pip install virtualenv #Instalar paquete virtualenv
+    virtualenv --version #Version
+    virtualenv env #Crear entorno con el paquete virtualenv
+
+    Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en las ultimas versiones de Python
+    python -m venv env
 
 ###### 2. Activar ambiente virtual
 
