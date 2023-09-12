@@ -92,7 +92,12 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
         created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
         updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-#### 4. Definiendo el forms.py
+#### 4. Creando y corriendo las migraciones
+
+    python3 manager.py makemigrations <nombre del modelo> #Creando las migraciones de mi modelo
+    python3 manager.py migrate #Correr migraciones
+
+#### 5. Definiendo el forms.py
 
     from django import forms
     from .models import *
@@ -109,7 +114,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
                 'img_zapato': 'Imagen'
             }
 
-#### 5. Define el views.py
+#### 6. Define el views.py
 
     # Importando el modelo
     from .models import Zapato
@@ -139,7 +144,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
     def list_imagenes(request):
         return Zapato.objects.all()
 
-#### 6 Pintando el formulario en tu plantilla index.html
+#### 7. Pintando el formulario en tu plantilla index.html
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p }}
