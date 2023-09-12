@@ -10,7 +10,7 @@
     virtualenv env #Crear entorno con el paquete virtualenv
 
     Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en las ultimas versiones de Python
-    python -m venv env
+    python -m venv env o python3 -m venv env
 
 ###### 2. Activar ambiente virtual
 
@@ -29,16 +29,16 @@
 
     Pillow es la librería que nos permitirá usar el campo ImageField para poder guardar imágenes
 
-    - https://pypi.org/project/Pillow/
-      pip install Pillow
+    https://pypi.org/project/Pillow/
+    pip install Pillow
 
 ###### 6. Crear el proyecto con Djando
 
     `django-admin startproject project_core .`
-    El punto . es crucial le dice al script que instale Django en el directorio actual
+     El punto . es crucial le dice al script que instale Django en el directorio actual
 
      Ya en este punto se puede correr el proyecto que a creado Django,
-      python manage.py runserver
+     python manage.py runserver
 
 ###### 7. Crear mi primera aplicación en Django
 
@@ -47,8 +47,7 @@
 ###### 8. Crear el archivo requirements.txt para tener todos mis paquetes a la mano
 
     pip freeze > requirements.txt
-    Nota: para instalar los paquetes solo basta ejecutar
-    pip install -r requirements.txt
+    pip install -r requirements.txt  #Para instalar los paquetes del proyecto
 
 ###### 9. Instalar nuestra aplicación (upload_img) ya creada en el proyecto
 
@@ -153,7 +152,11 @@
         <button class="btn btn-primary" type="submit">subir imagen</button>
     </form>
 
-##### Resultado final
+#### 8. Corriendo el proyecto
+
+    python manage.py runserver
+
+## Resultado final
 
 ![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/guardar-imagen-en-django-python-urian-viera.png)
 
