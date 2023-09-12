@@ -14,14 +14,16 @@
 
 ###### 2. Activar ambiente virtual
 
-      . env/Script/activate
-     Para desactivar mi entorno virtual  ` deactivate`
+    . env/Script/activate #Activar ambiente desde Windows
+    . env/bin/activate  #Activar desde la Mac
+    deactivate #Desactivar mi entorno virtual
 
 ###### 3. Instalar Djando desde el manejador de paquete de Python Pip
 
     pip install Django
     Nota: para instalar Django en una version especifica
     pip install Django==4.2.4
+    python3 -m django --version  #Vrsion instalada de Django
 
 ###### 4. Instalar el paquete (biblioteca) Pillow, esto con el fin de poder procesar la subida de imagen en el servidor
 
