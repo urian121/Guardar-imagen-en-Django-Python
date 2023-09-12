@@ -154,7 +154,7 @@
 
 #### 8. Corriendo el proyecto
 
-    python manage.py runserver
+    python3 manage.py runserver
 
 ## Resultado final
 
