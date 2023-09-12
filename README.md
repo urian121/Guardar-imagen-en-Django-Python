@@ -154,7 +154,8 @@
 
 #### 8. Corriendo el proyecto
 
-    python3 manage.py runserver
+    python3 manage.py runserver # Corriendo el proyecto
+    python3 manage.py runserver 8500 #Corriendo el proyecto en un puerto diferente
 
 ## Resultado final
 
