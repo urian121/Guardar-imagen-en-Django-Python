@@ -56,18 +56,21 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
     'upload_img',
     ]
 
-#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ##### 1. Configurar tu settings.py
 
+    El módulo os nos permite acceder a funcionalidades dependientes del Sistema Operativo.
     import os
+    # Es la URL que podemos usar en nuestras plantillas para referenciar las imagenes.
     MEDIA_URL = '/media/'
+    # Es la ruta absoluta del sistema donde se almacenará el archivo.
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
     IMPORTANTE: crear una carpeta al mismo nivel del proyecto 'project_core' que se llame 'media' sera alli donde
     guardaremos las imagenes subidas.
 
-#### 2. Configurar tu archivo urls.py del proyecto
+#### 2. Configurar el archivo urls.py del proyecto
 
     from django.conf import settings
     from django.conf.urls.static import static
@@ -79,7 +82,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
     if settings.DEBUG:
     	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-#### 3. Definiendo tu models.py
+#### 3. Definiendo el models.py
 
     from django.db import models
 
@@ -89,7 +92,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
         created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
         updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
-#### 4. Definiendo tu forms.py
+#### 4. Definiendo el forms.py
 
     from django import forms
     from .models import *
@@ -106,15 +109,13 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
                 'img_zapato': 'Imagen'
             }
 
-#### 5. Define tu views.py
+#### 5. Define el views.py
 
-# Importando el modelo
+    # Importando el modelo
+    from .models import Zapato
 
-from .models import Zapato
-
-# Importando el formulario desde la instacia de modelo forms
-
-from .forms import ZapatoForm
+    # Importando el formulario desde la instacia de modelo forms
+    from .forms import ZapatoForm
 
     def inicio(request):
         if request.method == 'POST':
