@@ -1,4 +1,4 @@
-# Guardar archivo imagen en Django Python 🐍
+# 🔥 Guardar archivo imagen en Django Python 🐍
 
 ###### 1. Crear un entorno virtual, hay muchas formas
 
@@ -58,7 +58,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
 #### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-##### 1. Configurar tu settings.py
+##### 1. Configurar el settings.py
 
     El módulo os nos permite acceder a funcionalidades dependientes del Sistema Operativo.
     import os
