@@ -46,6 +46,7 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
 
     pip freeze > requirements.txt
     Nota: para instalar los paquetes solo basta ejecutar
+    pip install -r requirements.txt
 
 ###### 9. Instalar nuestra aplicación (upload_img) ya creada en el proyecto
 
@@ -54,6 +55,8 @@ Opción 2: Crear un entorno virtual con el paquete que ya viene por defecto en l
     ----,
     'upload_img',
     ]
+
+#### - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ##### 1. Configurar tu settings.py
 
