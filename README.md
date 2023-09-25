@@ -32,7 +32,7 @@
     https://pypi.org/project/Pillow/
     pip install Pillow
 
-###### 6. Crear el proyecto con Djando
+###### 5. Crear el proyecto con Djando
 
     `django-admin startproject project_core .`
      El punto . es crucial le dice al script que instale Django en el directorio actual
@@ -40,16 +40,16 @@
      Ya en este punto se puede correr el proyecto que a creado Django,
      python manage.py runserver
 
-###### 7. Crear mi primera aplicación en Django
+###### 6. Crear mi primera aplicación en Django
 
     python manage.py startapp upload_img
 
-###### 8. Crear el archivo requirements.txt para tener todos mis paquetes a la mano
+###### 7. Crear el archivo requirements.txt para tener todos mis paquetes a la mano
 
     pip freeze > requirements.txt
     pip install -r requirements.txt  #Para instalar los paquetes del proyecto
 
-###### 9. Instalar nuestra aplicación (upload_img) ya creada en el proyecto
+###### 8. Instalar nuestra aplicación (upload_img) ya creada en el proyecto
 
     archivo settings.py
     INSTALLED_APPS = [
@@ -93,6 +93,10 @@
         created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
         updated = models.DateTimeField(auto_now_add=False, auto_now=True)
 
+        class Meta:
+            db_table = "zapatos"
+            ordering = ['-created_at']
+
 #### 4. Creando y corriendo las migraciones
 
     python3 manager.py makemigrations <nombre del modelo> #Creando las migraciones de mi modelo
@@ -115,7 +119,25 @@
                 'img_zapato': 'Imagen'
             }
 
-#### 6. Define el views.py
+#### 6. Crear archivo urls.py para manejar las rutas de mi aplicacion
+
+    from django.urls import pathess, list_imagenes, inicio
+    from . import views
+
+    urlpatterns = [
+        path('', views.inicio, name='inicio'),
+    ]
+
+#### 7. Importar el archivo urls.py de nuestra aplicacion en urls.py del proyecto
+
+    from django.urls import path, include  # nuevo
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('upload_img.urls')),
+    ]
+
+#### 8. Define el views.py
 
     # Importando el modelo
     from .models import Zapato
@@ -145,14 +167,14 @@
     def list_imagenes(request):
         return Zapato.objects.all()
 
-#### 7. Pintando el formulario en tu plantilla index.html
+#### 9. Pintando el formulario en tu plantilla index.html
 
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %} {{ form.as_p }}
         <button class="btn btn-primary" type="submit">subir imagen</button>
     </form>
 
-#### 8. Corriendo el proyecto
+#### 10. Corriendo el proyecto
 
     python3 manage.py runserver # Corriendo el proyecto
     python3 manage.py runserver 8500 #Corriendo el proyecto en un puerto diferente
