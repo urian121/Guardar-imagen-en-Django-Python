@@ -99,8 +99,8 @@
 
 #### 4. Creando y corriendo las migraciones
 
-    python3 manager.py makemigrations <nombre del modelo> #Creando las migraciones de mi modelo
-    python3 manager.py migrate #Correr migraciones
+    python3 manage.py makemigrations <nombre del modelo> #Creando las migraciones de mi modelo
+    python3 manage.py migrate #Correr migraciones
 
 #### 5. Definiendo el forms.py
 
